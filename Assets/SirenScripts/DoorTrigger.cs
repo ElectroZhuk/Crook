@@ -12,13 +12,17 @@ public class DoorTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent<Player>(out _player))
+        Player player;
+
+        if (collision.gameObject.TryGetComponent<Player>(out player))
             _entered?.Invoke();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent<Player>(out _player))
+        Player player;
+
+        if (collision.gameObject.TryGetComponent<Player>(out player))
             _leaved?.Invoke();
     }
 }

@@ -10,11 +10,12 @@ public class FadedAudioPlayer : MonoBehaviour
 
     private float _target;
     private float _pauseSeconds;
+    private float _delta = 0.01f;
 
     private void Awake()
     {
         _player.volume = 0;
-        _pauseSeconds = _fadeSeconds / 100;
+        _pauseSeconds = _fadeSeconds / (1 / _delta);
     }
 
     public void Play()
@@ -35,7 +36,7 @@ public class FadedAudioPlayer : MonoBehaviour
     {
         while (_player.volume != _target)
         {
-            _player.volume = Mathf.MoveTowards(_player.volume, _target, 0.01f);
+            _player.volume = Mathf.MoveTowards(_player.volume, _target, _delta);
 
             yield return new WaitForSeconds(_pauseSeconds);
         }
